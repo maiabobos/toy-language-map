@@ -46,10 +46,16 @@ public final class Examples {
                                             new AssignStmt("v", new ValueExp(new IntValue(3)))),
                                             new PrintStmt(new VarExp("v"))))));
 
+    public static final IStmt EXERROR =
+            new CompStmt(new VarDeclStmt("a", new BoolType()),
+                    new CompStmt(new AssignStmt("a", new ValueExp(new IntValue(2))),
+                        new PrintStmt(new VarExp("a"))));
+
     public static List<Example> all() {
         return List.of(
                 new Example("int v; v = 2; print(v)", EX1),
                 new Example("int a; int b; a = 2 + 3 * 5; b = a + 1; print(b)", EX2),
-                new Example("bool a; int v; a = true; (if a then v = 2 else v = 3); print(v)", EX3));
+                new Example("bool a; int v; a = true; (if a then v = 2 else v = 3); print(v)", EX3),
+                new Example("bool a; a = 2; print(a)", EXERROR));
     }
 }
