@@ -3,6 +3,9 @@ package interpreter.model.value;
 import interpreter.model.type.StringType;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringValueTest {
@@ -24,5 +27,17 @@ class StringValueTest {
     @Test
     void toStringShowsActualString() {
         assertEquals("\"abc\"", new StringValue("abc").toString());
+    }
+
+    @Test
+    void equalStringsHaveTheSameHashCode() {
+        assertEquals(new StringValue("test.in").hashCode(), new StringValue("test.in").hashCode());
+    }
+
+    @Test
+    void worksAsAHashMapKeyWithADifferentButEqualInstance() {
+        Map<StringValue, Integer> map = new HashMap<>();
+        map.put(new StringValue("test.in"), 1);
+        assertEquals(Integer.valueOf(1), map.get(new StringValue("test.in")));
     }
 }
