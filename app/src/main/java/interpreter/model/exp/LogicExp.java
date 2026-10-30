@@ -9,9 +9,9 @@ import interpreter.model.value.IValue;
 public record LogicExp(LogicOp op, IExp left, IExp right) implements IExp {
     @Override
     public IValue eval(IDictionary<String, IValue> symTable) throws MyException {
-        if (!(left.eval(symTable) instanceof BoolValue(Boolean b1)))
+        if (!(left.eval(symTable) instanceof BoolValue(boolean b1)))
             throw new ExpressionException("First operand is not a boolean");
-        if (!(right.eval(symTable) instanceof BoolValue(Boolean b2)))
+        if (!(right.eval(symTable) instanceof BoolValue(boolean b2)))
             throw new ExpressionException("Second operand is not a boolean");
         return switch(op) {
             case AND -> new BoolValue(b1 && b2);

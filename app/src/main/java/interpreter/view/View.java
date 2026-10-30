@@ -32,7 +32,7 @@ public class View {
 
     private void printMenu() {
         System.out.println();
-        System.out.println("=== Toy interpreter ===");
+        System.out.println("--- Toy interpreter ---");
         System.out.println("Selected program: " + (selected == null ? "(none)" : selected.description()));
         System.out.println("1. Select a program");
         System.out.println("2. Run the selected program");

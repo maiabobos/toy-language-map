@@ -3,7 +3,7 @@ package interpreter.model.value;
 import interpreter.model.type.BoolType;
 import interpreter.model.type.IType;
 
-public record BoolValue(Boolean val) implements IValue {
+public record BoolValue(boolean val) implements IValue {
     @Override
     public IType getType() {
         return new BoolType();
