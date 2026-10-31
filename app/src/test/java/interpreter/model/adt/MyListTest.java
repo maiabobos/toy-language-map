@@ -4,6 +4,8 @@ import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyListTest {
@@ -47,5 +49,19 @@ class MyListTest {
     @Test
     void getEmptyListThrows() {
         assertThrows(ADTException.class, () -> list.get(0));
+    }
+
+    @Test
+    void toListReturnsElementsInInsertionOrder() {
+        list.add("a");
+        list.add("b");
+        assertEquals(List.of("a", "b"), list.toList());
+    }
+
+    @Test
+    void changingTheReturnedListDoesNotChangeTheOriginal() {
+        list.add("a");
+        list.toList().add("b");
+        assertEquals(1, list.size());
     }
 }

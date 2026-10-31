@@ -4,6 +4,8 @@ import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyDictionaryTest {
@@ -63,5 +65,13 @@ class MyDictionaryTest {
         String s = dict.toString();
         assertTrue(s.contains("a"));
         assertTrue(s.contains("1"));
+    }
+
+    @Test
+    void toMapDoesNotChangeDict() throws ADTException {
+        dict.put("a", 1);
+        dict.put("b", 2);
+        dict.toMap();
+        assertEquals(2, dict.lookup("b"));
     }
 }
