@@ -22,7 +22,7 @@ public class PrintStmtTest {
 
     @BeforeEach
     void setUp() throws ADTException {
-        state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new NopStmt());
+        state = PrgState.of(new NopStmt());
         state.getExeStack().pop();
     }
 

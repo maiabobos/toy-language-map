@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
     private static PrgState stateFor(IStmt program) {
-        return new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), program);
+        return PrgState.of(program);
     }
 
     private static Controller controllerFor(PrgState state, boolean display) {

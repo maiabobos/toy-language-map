@@ -64,8 +64,7 @@ public class View {
             System.out.println("No program selected. Choose option 1 first.");
             return;
         }
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(),
-                new MyList<>(), selected.program());
+        PrgState state = PrgState.of(selected.program());
         Controller controller = new Controller(new Repository(state), true);
         try {
             controller.allStep();
