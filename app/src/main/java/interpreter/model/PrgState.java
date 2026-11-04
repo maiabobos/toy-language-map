@@ -59,7 +59,8 @@ public class PrgState {
     public String toString() {
         return "ExeStack: " + exeStack + "\n" +
                 "SymTable: " + symTable + "\n" +
-                "Out: " + out + "\n";
+                "Out: " + out + "\n" +
+                "FileTable: " + fileTable + "\n";
     }
 
     public String toLogString() {

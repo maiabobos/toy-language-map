@@ -1,16 +1,14 @@
 package interpreter.model.stmt;
 
-import interpreter.exceptions.ADTException;
 import interpreter.exceptions.MyException;
 import interpreter.exceptions.StatementException;
 import interpreter.model.PrgState;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
 import interpreter.model.type.BoolType;
 import interpreter.model.type.IntType;
+import interpreter.model.type.StringType;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IntValue;
+import interpreter.model.value.StringValue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -49,5 +47,11 @@ class VarDeclStmtTest {
         new VarDeclStmt("v", new IntType()).execute(state);
         assertThrows(StatementException.class,
                 () -> new VarDeclStmt("v", new BoolType()).execute(state));
+    }
+
+    @Test
+    void declaringAStringAddsWithEmptyString() throws MyException {
+        new VarDeclStmt("s", new StringType()).execute(state);
+        assertEquals(new StringValue(""), state.getSymTable().lookup("s"));
     }
 }
