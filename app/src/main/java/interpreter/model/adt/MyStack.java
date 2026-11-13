@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class MyStack<T> implements IStack<T>{
+public class MyStack<T> implements IStack<T> {
     private final Deque<T> stack = new ArrayDeque<>();
 
     @Override
@@ -22,7 +22,6 @@ public class MyStack<T> implements IStack<T>{
         return stack.pop();
     }
 
-    @Override
     public boolean isEmpty() {
         return stack.isEmpty();
     }

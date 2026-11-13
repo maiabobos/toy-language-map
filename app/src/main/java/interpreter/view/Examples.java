@@ -71,17 +71,16 @@ public final class Examples {
                                                     new PrintStmt(new VarExp("a")),
                                                     new PrintStmt(new VarExp("b")))))));
 
+    public static final IStmt EX6 =
+            new CompStmt(new VarDeclStmt("a", new IntType()),
+                    new CompStmt(new VarDeclStmt("b", new IntType()),
+                            new CompStmt(new VarDeclStmt("c", new BoolType()),
+                                    new CompStmt(new AssignStmt("a", new ValueExp(new IntValue(1))),
+                                    new CompStmt(new AssignStmt("b", new ValueExp(new IntValue(2))),
+                                            new CompStmt(new AssignStmt("c", new RelationalExp(RelOp.NE, new VarExp("a"), new VarExp("b"))),
+                                                    new PrintStmt(new VarExp("c"))))))));
+
     public static final IStmt EX4 = fileExample("test.in");
 
-    /*
-    public static List<Example> all() {
-        return List.of(
-                new Example("int v; v = 2; print(v)", EX1),
-                new Example("int a; int b; a = 2 + 3 * 5; b = a + 1; print(b)", EX2),
-                new Example("bool a; int v; a = true; (if a then v = 2 else v = 3); print(v)", EX3),
-                new Example("string varf; varf = 'test.in'; ", EX4),
-                new Example("int a; int b; a = 5; b = 7; (if a < b then print(a) else print(b))", EX5),
-                new Example("bool a; a = 2; print(a)", EXERROR));
-    }
-     */
+
 }

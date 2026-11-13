@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<IStmt> programs = List.of(Examples.EX1, Examples.EX2, Examples.EX3, Examples.EX4, Examples.EX5);
+        List<IStmt> programs = List.of(Examples.EX1, Examples.EX2, Examples.EX3, Examples.EX4, Examples.EX5, Examples.EXERROR, Examples.EX6);
 
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
