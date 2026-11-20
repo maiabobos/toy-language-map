@@ -3,7 +3,9 @@ package interpreter.model.exp;
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
 import interpreter.model.adt.IDictionary;
+import interpreter.model.adt.IHeap;
 import interpreter.model.adt.MyDictionary;
+import interpreter.model.adt.MyHeap;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IValue;
 import interpreter.model.value.IntValue;
@@ -15,10 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RelationalExpTest {
     private IDictionary<String, IValue> symT;
+    private IHeap heap;
 
     @BeforeEach
     void setUp() {
         symT = new MyDictionary<>();
+        heap = new MyHeap();
     }
 
     private static IExp num(int n) {
@@ -27,67 +31,67 @@ class RelationalExpTest {
 
     @Test
     void ltTrueResultWorks() throws MyException {
-        assertEquals(new BoolValue(true), new RelationalExp(RelOp.LT, num(2), num(3)).eval(symT));
+        assertEquals(new BoolValue(true), new RelationalExp(RelOp.LT, num(2), num(3)).eval(symT, heap));
     }
 
     @Test
     void ltFalseResultWorks() throws MyException {
-        assertEquals(new BoolValue(false), new RelationalExp(RelOp.LT, num(2), num(1)).eval(symT));
+        assertEquals(new BoolValue(false), new RelationalExp(RelOp.LT, num(2), num(1)).eval(symT, heap));
     }
 
     @Test
     void leTrueResultWorks() throws MyException {
-        assertEquals(new BoolValue(true), new RelationalExp(RelOp.LE, num(2), num(4)).eval(symT));
+        assertEquals(new BoolValue(true), new RelationalExp(RelOp.LE, num(2), num(4)).eval(symT, heap));
     }
 
     @Test
     void leFalseResultWorks() throws MyException {
-        assertEquals(new BoolValue(false), new RelationalExp(RelOp.LE, num(2), num(1)).eval(symT));
+        assertEquals(new BoolValue(false), new RelationalExp(RelOp.LE, num(2), num(1)).eval(symT, heap));
     }
 
     @Test
     void eqTrueResultWorks() throws MyException {
-        assertEquals(new BoolValue(true), new RelationalExp(RelOp.EQ, num(3), num(3)).eval(symT));
+        assertEquals(new BoolValue(true), new RelationalExp(RelOp.EQ, num(3), num(3)).eval(symT, heap));
     }
 
     @Test
     void eqFalseResultWorks() throws MyException {
-        assertEquals(new BoolValue(false), new RelationalExp(RelOp.EQ, num(2), num(4)).eval(symT));
+        assertEquals(new BoolValue(false), new RelationalExp(RelOp.EQ, num(2), num(4)).eval(symT, heap));
     }
 
     @Test
     void neTrueResultWorks() throws MyException {
-        assertEquals(new BoolValue(true), new RelationalExp(RelOp.NE, num(2), num(3)).eval(symT));
+        assertEquals(new BoolValue(true), new RelationalExp(RelOp.NE, num(2), num(3)).eval(symT, heap));
     }
 
     @Test
     void neFalseResultWorks() throws MyException {
-        assertEquals(new BoolValue(false), new RelationalExp(RelOp.NE, num(2), num(2)).eval(symT));
+        assertEquals(new BoolValue(false), new RelationalExp(RelOp.NE, num(2), num(2)).eval(symT, heap));
     }
 
     @Test
     void gtTrueResultWorks() throws MyException {
-        assertEquals(new BoolValue(true), new RelationalExp(RelOp.GT, num(5), num(3)).eval(symT));
+        assertEquals(new BoolValue(true), new RelationalExp(RelOp.GT, num(5), num(3)).eval(symT, heap));
     }
 
     @Test
     void gtFalseResultWorks() throws MyException {
-        assertEquals(new BoolValue(false), new RelationalExp(RelOp.GT, num(0), num(1)).eval(symT));
+        assertEquals(new BoolValue(false), new RelationalExp(RelOp.GT, num(0), num(1)).eval(symT, heap));
     }
 
     @Test
     void geTrueResultWorks() throws MyException {
-        assertEquals(new BoolValue(true), new RelationalExp(RelOp.GE, num(5), num(3)).eval(symT));
+        assertEquals(new BoolValue(true), new RelationalExp(RelOp.GE, num(5), num(3)).eval(symT, heap));
     }
 
     @Test
     void geFalseResultWorks() throws MyException {
-        assertEquals(new BoolValue(false), new RelationalExp(RelOp.GE, num(2), num(7)).eval(symT));
+        assertEquals(new BoolValue(false), new RelationalExp(RelOp.GE, num(2), num(7)).eval(symT, heap));
     }
 
     @Test
     void nonIntegerOperandThrows() {
-        assertThrows(ExpressionException.class, () -> new RelationalExp(RelOp.EQ, num(2), new ValueExp(new StringValue("a"))).eval(symT));
+        assertThrows(ExpressionException.class, () -> new RelationalExp(RelOp.EQ, num(2), new ValueExp(new StringValue("a"))).eval(symT, heap));
     }
 
 }

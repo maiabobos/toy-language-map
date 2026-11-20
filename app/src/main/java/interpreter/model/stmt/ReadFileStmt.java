@@ -18,13 +18,13 @@ public record ReadFileStmt(IExp exp, String varName) implements  IStmt {
     @Override
     public PrgState execute(PrgState state) throws MyException {
         IDictionary<String, IValue> symT = state.getSymTable();
-
+        var heap = state.getHeap();
         if (!symT.isDefined(varName))
             throw new StatementException("ReadFile: " + varName + " is not defined");
         if (!(symT.lookup(varName) instanceof IntValue))
             throw new StatementException("ReadFile: " + varName + " does not have type int");
 
-        if (!(exp.eval(symT) instanceof StringValue filename))
+        if (!(exp.eval(symT, heap) instanceof StringValue filename))
             throw new StatementException("ReadFile: " + exp + " is not a string");
         var fileTable = state.getFileTable();
         if (!fileTable.isDefined(filename))
