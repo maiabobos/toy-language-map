@@ -46,10 +46,6 @@ public final class Examples {
                                             new AssignStmt("v", new ValueExp(new IntValue(3)))),
                                             new PrintStmt(new VarExp("v"))))));
 
-    public static final IStmt EXERROR =
-            new CompStmt(new VarDeclStmt("a", new BoolType()),
-                    new CompStmt(new AssignStmt("a", new ValueExp(new IntValue(2))),
-                        new PrintStmt(new VarExp("a"))));
 
     public static IStmt fileExample(String fileName) {
         return new CompStmt(new VarDeclStmt("varf", new StringType()),
