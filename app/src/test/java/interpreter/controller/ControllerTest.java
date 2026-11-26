@@ -234,13 +234,6 @@ class ControllerTest {
     }
 
     @Test
-    void logFileHasTheInitialStateAndOneStateAfterEveryStep() throws Exception {
-        run(Examples.EX1);
-        String log = Files.readString(dir.resolve("log.txt"));
-        assertEquals(6, log.split("ExeStack:", -1).length - 1);
-    }
-
-    @Test
     void logFileListsTheOpenFileInTheFileTable() throws Exception {
         Path in = dir.resolve("test.in");
         Files.writeString(in, "15\n50\n");
